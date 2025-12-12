@@ -87,17 +87,19 @@ public class cardTable extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(200, 280));
         setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setBackground(new java.awt.Color(102, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 5, 10));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
 
         txtIdTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtIdTable.setForeground(new java.awt.Color(51, 102, 255));
         txtIdTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtIdTable.setText("Bàn : ");
         txtIdTable.setMaximumSize(new java.awt.Dimension(3000, 30));
         jPanel1.add(txtIdTable);
 
         txtSeats.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtSeats.setText("So cho : ");
+        txtSeats.setText("Số chỗ : ");
         txtSeats.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 1, 5, 1));
         jPanel1.add(txtSeats);
 
@@ -107,19 +109,20 @@ public class cardTable extends javax.swing.JPanel {
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
+        jPanel2.setBackground(new java.awt.Color(102, 255, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 5, 10));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         displayTrangthai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         displayTrangthai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        displayTrangthai.setText("Thay doi trang thai : ");
+        displayTrangthai.setText("Thay đổi trạng thái : ");
         displayTrangthai.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 0, 0));
         jPanel2.add(displayTrangthai, new java.awt.GridBagConstraints());
 
+        modeEmpty.setBackground(new java.awt.Color(255, 255, 153));
         modeEmpty.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        modeEmpty.setText("Trong");
+        modeEmpty.setText("Trống");
         modeEmpty.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 10, 10));
-        modeEmpty.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         modeEmpty.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 modeEmptyMouseClicked(evt);
@@ -137,10 +140,10 @@ public class cardTable extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 10);
         jPanel2.add(modeEmpty, gridBagConstraints);
 
+        modeBooked.setBackground(new java.awt.Color(255, 102, 102));
         modeBooked.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        modeBooked.setText("Da Dat");
+        modeBooked.setText("Đã đặt");
         modeBooked.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 10, 10));
-        modeBooked.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         modeBooked.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 modeBookedMouseClicked(evt);
@@ -158,10 +161,10 @@ public class cardTable extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 10);
         jPanel2.add(modeBooked, gridBagConstraints);
 
+        modeUsing.setBackground(new java.awt.Color(102, 255, 102));
         modeUsing.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        modeUsing.setText("Dang Dung");
+        modeUsing.setText("Đang dùng");
         modeUsing.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 10, 10));
-        modeUsing.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         modeUsing.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 modeUsingMouseClicked(evt);
@@ -184,17 +187,17 @@ public class cardTable extends javax.swing.JPanel {
 
     private void modeUsingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeUsingActionPerformed
         // TODO add your handling code here:
-        handleUpdate("Đang Dùng");
+        handleUpdate("Using");
     }//GEN-LAST:event_modeUsingActionPerformed
 
     private void modeBookedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeBookedActionPerformed
         // TODO add your handling code here:
-        handleUpdate("Đã Đặt");
+        handleUpdate("Booked");
     }//GEN-LAST:event_modeBookedActionPerformed
 
     private void modeEmptyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeEmptyActionPerformed
         // TODO add your handling code here:
-        handleUpdate("Trống");
+        handleUpdate("Empty");
         
     }//GEN-LAST:event_modeEmptyActionPerformed
 

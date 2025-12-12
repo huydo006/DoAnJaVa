@@ -67,7 +67,6 @@ public class JFSignUpUI extends javax.swing.JFrame {
         right.setBackground(new java.awt.Color(0, 102, 102));
         right.setPreferredSize(new java.awt.Dimension(400, 500));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("D:\\github\\Git\\DoAnJaVa\\src\\icon\\LOGO_DHXD.png")); // NOI18N
         jLabel6.setText("jLabel6");
 
         jLabel7.setFont(new java.awt.Font("Snap ITC", 1, 30)); // NOI18N

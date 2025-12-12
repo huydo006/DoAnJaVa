@@ -57,13 +57,11 @@ public class Main_menu extends javax.swing.JFrame {
         // 1. Khởi tạo đối tượng từ File Panel
         pnScreenQuanLyBanAn banAnPanel = new pnScreenQuanLyBanAn();
         pnScreenDatBanMoi datBanPanel = new pnScreenDatBanMoi(this);
-        pnScreenDanhSach danhSachPanel =new pnScreenDanhSach();
         
         banAnPanel.setDatBanMoiListener(datBanPanel);
         datBanPanel.setQuanLyBanListener(banAnPanel);
-        datBanPanel.setDanhSachListener(danhSachPanel);
         
-        
+        pnScreenDanhSach danhSachPanel =new pnScreenDanhSach();
         pnScreenDanhSachEmployee danhsachEm = new pnScreenDanhSachEmployee(); 
         
         
@@ -73,12 +71,20 @@ public class Main_menu extends javax.swing.JFrame {
         pnMain.add(banAnPanel, "pnScreenQuanLyBanAn");
         pnMain.add(datBanPanel, "pnScreenDatBanMoi");
         pnMain.add(danhSachPanel, "pnScreenDanhSach");
-        pnMain.add(danhsachEm , "pnScreenDanhSachEmployee");       
+        pnMain.add(danhsachEm , "pnScreenDanhSachEmployee");
+        
+        
+        
 //          ^ Đối tượng Panel      ^ Tên Card
         
         
     }
-
+//    public void setDefauleCurrentAccount(Account now){
+//        this.AccCurrent = now;
+//    }
+//    public Account getDefauleCurrentAccount(){
+//        return this.AccCurrent;
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,9 +112,6 @@ public class Main_menu extends javax.swing.JFrame {
         sodobanan1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableListPanel1 = new javax.swing.JPanel();
-        pnTitle = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         pnMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -118,7 +121,6 @@ public class Main_menu extends javax.swing.JFrame {
         btnLogOut = new javax.swing.JButton();
         pnMain = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        txtWelcome = new javax.swing.JLabel();
 
         screenQuanLyBan1.setLayout(new java.awt.BorderLayout());
 
@@ -311,87 +313,61 @@ public class Main_menu extends javax.swing.JFrame {
         setTitle("Restaurant Managerment System");
         setMinimumSize(new java.awt.Dimension(1070, 600));
 
-        pnTitle.setBackground(new java.awt.Color(32, 39, 52));
-        pnTitle.setPreferredSize(new java.awt.Dimension(1070, 50));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Restaurant Managerment System ");
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel3.setText("X");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnTitleLayout = new javax.swing.GroupLayout(pnTitle);
-        pnTitle.setLayout(pnTitleLayout);
-        pnTitleLayout.setHorizontalGroup(
-            pnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnTitleLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 761, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
-        );
-        pnTitleLayout.setVerticalGroup(
-            pnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnTitleLayout.createSequentialGroup()
-                .addGroup(pnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnTitleLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel2))
-                    .addGroup(pnTitleLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(pnTitle, java.awt.BorderLayout.PAGE_START);
-
-        pnMenu.setBackground(new java.awt.Color(255, 255, 255));
+        pnMenu.setBackground(new java.awt.Color(255, 255, 204));
         pnMenu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnMenu.setPreferredSize(new java.awt.Dimension(200, 1100));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Quản lý đặt bàn ");
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.setPreferredSize(new java.awt.Dimension(150, 200));
 
-        jButton1.setText("Quan ly ban");
+        jButton1.setBackground(new java.awt.Color(66, 133, 244));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Quản lý bàn");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Dat ban moi");
+        jButton2.setBackground(new java.awt.Color(66, 133, 244));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Đặt bàn mới");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Xem danh sach ban");
+        jButton3.setBackground(new java.awt.Color(66, 133, 244));
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Xem danh sách bàn");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Danh sach nhan vien");
+        jButton4.setBackground(new java.awt.Color(66, 133, 244));
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Danh sách nhân viên");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        btnLogOut.setText("Đăng Xuất");
+        btnLogOut.setBackground(new java.awt.Color(66, 133, 244));
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLogOut.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogOut.setText("Đăng xuất");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogOutActionPerformed(evt);
@@ -423,7 +399,7 @@ public class Main_menu extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 685, Short.MAX_VALUE))
+                .addGap(0, 735, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnMenu, java.awt.BorderLayout.LINE_START);
@@ -431,26 +407,15 @@ public class Main_menu extends javax.swing.JFrame {
         pnMain.setBackground(new java.awt.Color(255, 255, 255));
         pnMain.setLayout(new java.awt.CardLayout());
 
-        txtWelcome.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtWelcome.setText("Chào Mừng");
-        txtWelcome.setOpaque(true);
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(182, 182, 182)
-                .addComponent(txtWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(409, Short.MAX_VALUE))
+            .addGap(0, 870, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(txtWelcome)
-                .addContainerGap(1023, Short.MAX_VALUE))
+            .addGap(0, 1150, Short.MAX_VALUE)
         );
 
         pnMain.add(jPanel7, "card2");
@@ -512,11 +477,6 @@ public class Main_menu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLogOutActionPerformed
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -552,10 +512,8 @@ public class Main_menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -564,7 +522,6 @@ public class Main_menu extends javax.swing.JFrame {
     private javax.swing.JPanel main1;
     private javax.swing.JPanel pnMain;
     private javax.swing.JPanel pnMenu;
-    private javax.swing.JPanel pnTitle;
     private javax.swing.JPanel screenQuanLyBan1;
     private javax.swing.JPanel sodobanan1;
     private javax.swing.JPanel tableListPanel1;
@@ -573,6 +530,5 @@ public class Main_menu extends javax.swing.JFrame {
     private javax.swing.JTextField txtCountBooked1;
     private javax.swing.JTextField txtCountEmpty1;
     private javax.swing.JTextField txtCountUsing1;
-    private javax.swing.JLabel txtWelcome;
     // End of variables declaration//GEN-END:variables
 }
