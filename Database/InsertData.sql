@@ -12,8 +12,22 @@ INSERT INTO DiningTable (seats, statusTable) VALUES
 (4,  'Trống'),
 (8,  'Trống');
 
+INSERT INTO DiningTable (seats) VALUES
+(4),
+(4),
+(6),
+(6),
+(8),
+(8),
+(10),
+(10),
+(12),
+(12);
+
+
 Insert into Account (username , password) 
-values('doquanghuy' , '11'),
+values ('',''),
+('doquanghuy' , '11'),
 ('phambinhhoan' , '22'),
 ('trinhquangtruong' ,'33'),
 ('phamngoctu' , '44');

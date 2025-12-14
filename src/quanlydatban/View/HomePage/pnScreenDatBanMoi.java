@@ -5,6 +5,9 @@
 package quanlydatban.View.HomePage;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import quanlydatban.Model.Table;
 import quanlydatban.Service.TableService;
@@ -16,67 +19,74 @@ import quanlydatban.Service.BookingService;
 import quanlydatban.Service.CustomerService;
 import quanlydatban.Service.EmployeeService;
 
+import javax.swing.JSpinner;
+import quanlydatban.Service.AccountService;
 
 
 /**implements TableUpdateListener
  *
  * @author HELLO
  */
+
 public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdateListener {
-    
-    private Main_menu parentFrame;
-   
-    private Employee Emp = null;
     private TableUpdateListener quanLyBanListener;
     private TableUpdateListener danhSachListener; 
-
-   
-
-    public pnScreenDatBanMoi(Main_menu temp)  {
+    
+    private Employee Emp = null;
+    
+    private String[] Reserved;
+    private Account AccCurrent;
+    
+    BookingService bks = new BookingService();
+    CustomerService cus = new CustomerService();
+    
+    public pnScreenDatBanMoi()  {
         
-        parentFrame = temp;
+        
         setCurrentEmp();
         initComponents();
-        cbChonBan.setModel(new javax.swing.DefaultComboBoxModel());
-        loadTabletoComboBox();
+        
         ViewTable();
     }
+//    private void setTxtChonBan(){
+//        int  row = this.tbTableList.getSelectedRow();
+//        String idTable = ""+this.tbTableList.getValueAt(row,0); 
+//        this.txtChonBan.setText(idTable);
+//    }
     
     private void ViewTable(){
         TableService list = new TableService();
-        DefaultTableModel model = (DefaultTableModel) this.tableEmpty.getModel();
+        DefaultTableModel model = (DefaultTableModel) this.tbTableList.getModel();
         model.setNumRows(0);
         for(Table x: list.getTbList()){
             model.addRow(new Object[] {x.getIdTable(),x.getSeats()});
         }
     }
-    private void loadTabletoComboBox(){
-        TableService list = new TableService();
-        
-        cbChonBan.removeAllItems();
-        cbChonBan.addItem("--- Chọn ID Bàn ---");
-        
-        for(Table x : list.getTbList()){
-            ((javax.swing.JComboBox) cbChonBan).addItem(x.getIdTable());
-            
-        }
-        if(cbChonBan.getItemCount()==1){
-            cbChonBan.removeAllItems();
-            cbChonBan.addItem("Hêt Bàn Rồi :((");
-        }
-    }
+
     private void resetForm(){
         this.txtTenKH.setText("");
         this.txtSDT.setText("");
-        this.txtTimeStarted.setText("");
+        // Reset về thời điểm hiện tại
+        txtTimeStarted.setValue(new java.util.Date());
+        txtTimeEnd.setValue(new java.util.Date());
         this.txtGhiChu.setText("");
         this.txtSoKhach.setText("");
-        cbChonBan.setSelectedIndex(0);
+        
+        this.txtChonBan.setText("");
+        
     }
-    private void setCurrentEmp() {
-        EmployeeService emp = new EmployeeService();
+    private void setCurrentEmp()  {
         try {
-            this.Emp = emp.getCurrentEmp(parentFrame.AccCurrent.getUsername());
+            AccountService acs = new AccountService();
+            List<Account> AccList = acs.getAccountList();
+            for(Account x: AccList){
+                if(x.isActive==true){
+                    AccCurrent= x;
+                    break;
+                }
+            }
+            EmployeeService emp = new EmployeeService();
+            this.Emp = emp.getCurrentEmp(AccCurrent.getUsername());
         } catch (SQLException ex) {
             System.getLogger(pnScreenDatBanMoi.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
@@ -89,6 +99,25 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
 // Setter mới
     public void setDanhSachListener(TableUpdateListener listener) {
         this.danhSachListener = listener;
+    }
+    private List<Integer> getListIdFromText(String Text) {
+        List<Integer> tempList = new ArrayList<>();
+        //trim : cắt khoảng trắng
+        if(Text.isEmpty() || Text.trim().isEmpty()){
+            return null;
+        }
+        //split : xóa ký tự (dấu phẩy)
+        String[] tempString =Text.split(" ");
+        
+        for(String x: tempString){
+            
+            String cleanTemp = x.trim();
+            if(!cleanTemp.isEmpty()){
+                int id  = Integer.parseInt(cleanTemp);
+                tempList.add(id);
+            }
+        }
+        return tempList;
     }
     
     
@@ -117,17 +146,18 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
         txtSoKhach = new javax.swing.JTextField();
         btnDeleteAll = new javax.swing.JButton();
         btnConfirm = new javax.swing.JButton();
-        txtTimeStarted = new javax.swing.JFormattedTextField();
         jLabel16 = new javax.swing.JLabel();
         txtGhiChu = new javax.swing.JTextField();
-        cbChonBan = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
-        txtTimeEnd = new javax.swing.JFormattedTextField();
+        txtChonBan = new javax.swing.JTextField();
+        btnChonBan = new javax.swing.JButton();
+        txtTimeStarted = new javax.swing.JSpinner(new javax.swing.SpinnerDateModel());
+        txtTimeEnd = new javax.swing.JSpinner(new javax.swing.SpinnerDateModel());
         pnBanTrong = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableEmpty = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbTableList = new javax.swing.JTable();
 
-        setPreferredSize(new java.awt.Dimension(863, 1100));
+        setPreferredSize(new java.awt.Dimension(900, 1100));
 
         screenDatBanMoi.setBackground(new java.awt.Color(255, 255, 204));
         screenDatBanMoi.setLayout(new java.awt.BorderLayout());
@@ -145,7 +175,7 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
             .addGroup(titleTDDBMLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel8)
-                .addContainerGap(673, Short.MAX_VALUE))
+                .addContainerGap(675, Short.MAX_VALUE))
         );
         titleTDDBMLayout.setVerticalGroup(
             titleTDDBMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,12 +219,6 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
             }
         });
 
-        txtTimeStarted.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTimeStartedActionPerformed(evt);
-            }
-        });
-
         jLabel16.setText("Ghi chú :");
 
         txtGhiChu.addActionListener(new java.awt.event.ActionListener() {
@@ -203,17 +227,12 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
             }
         });
 
-        cbChonBan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbChonBanActionPerformed(evt);
-            }
-        });
-
         jLabel17.setText("Gio ket thuc : ");
 
-        txtTimeEnd.addActionListener(new java.awt.event.ActionListener() {
+        btnChonBan.setText("Xác Nhận Bàn");
+        btnChonBan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTimeEndActionPerformed(evt);
+                btnChonBanActionPerformed(evt);
             }
         });
 
@@ -233,21 +252,27 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
                                 .addGap(24, 24, 24)
                                 .addGroup(pnThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTimeStarted, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel14)
                                     .addComponent(txtGhiChu, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel17)
-                                    .addComponent(txtTimeEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtTimeStarted, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTimeEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(pnThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13)
-                            .addComponent(txtSoKhach, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12)
-                            .addComponent(cbChonBan, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35))
+                            .addGroup(pnThongTinKHLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtSDT, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13)
+                                    .addComponent(txtSoKhach, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(txtChonBan))
+                                .addGap(35, 35, 35))
+                            .addGroup(pnThongTinKHLayout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(btnChonBan)
+                                .addGap(0, 236, Short.MAX_VALUE))))
                     .addGroup(pnThongTinKHLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDeleteAll)))
@@ -282,30 +307,33 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
                     .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTimeEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbChonBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addComponent(jLabel16)
+                    .addComponent(txtChonBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTimeEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(pnThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnThongTinKHLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDeleteAll)
                             .addComponent(btnConfirm))
                         .addGap(19, 19, 19))
                     .addGroup(pnThongTinKHLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6)
+                        .addComponent(btnChonBan)
+                        .addGap(12, 12, 12)
                         .addComponent(txtGhiChu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(24, Short.MAX_VALUE))))
+                        .addContainerGap(18, Short.MAX_VALUE))))
         );
+
+        javax.swing.JSpinner.DateEditor timeStartedEditor = new javax.swing.JSpinner.DateEditor(txtTimeStarted, "HH:mm");
+        txtTimeStarted.setEditor(timeStartedEditor);
+        javax.swing.JSpinner.DateEditor timeEndEditor = new javax.swing.JSpinner.DateEditor(txtTimeEnd, "HH:mm");
+        txtTimeEnd.setEditor(timeEndEditor);
 
         mainTaoDon.add(pnThongTinKH, java.awt.BorderLayout.PAGE_START);
 
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 1, 1, 1));
-        jScrollPane2.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(800, 500));
-
-        tableEmpty.setModel(new javax.swing.table.DefaultTableModel(
+        tbTableList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -321,16 +349,36 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
                 return canEdit [columnIndex];
             }
         });
-        tableEmpty.setPreferredSize(new java.awt.Dimension(170, 200));
-        tableEmpty.setRowHeight(25);
-        tableEmpty.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(tableEmpty);
-        if (tableEmpty.getColumnModel().getColumnCount() > 0) {
-            tableEmpty.getColumnModel().getColumn(0).setResizable(false);
-            tableEmpty.getColumnModel().getColumn(1).setResizable(false);
+        tbTableList.setPreferredSize(new java.awt.Dimension(200, 400));
+        tbTableList.setRowHeight(25);
+        tbTableList.getTableHeader().setReorderingAllowed(false);
+        tbTableList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbTableListMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbTableList);
+        if (tbTableList.getColumnModel().getColumnCount() > 0) {
+            tbTableList.getColumnModel().getColumn(0).setResizable(false);
+            tbTableList.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        pnBanTrong.add(jScrollPane2);
+        javax.swing.GroupLayout pnBanTrongLayout = new javax.swing.GroupLayout(pnBanTrong);
+        pnBanTrong.setLayout(pnBanTrongLayout);
+        pnBanTrongLayout.setHorizontalGroup(
+            pnBanTrongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnBanTrongLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+        pnBanTrongLayout.setVerticalGroup(
+            pnBanTrongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnBanTrongLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
+        );
 
         mainTaoDon.add(pnBanTrong, java.awt.BorderLayout.CENTER);
 
@@ -340,21 +388,20 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 870, Short.MAX_VALUE)
+            .addGap(0, 1235, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(screenDatBanMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 880, Short.MAX_VALUE)
+            .addGap(0, 1100, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(screenDatBanMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 159, Short.MAX_VALUE)
+                    .addComponent(screenDatBanMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 941, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -362,65 +409,155 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
         resetForm();
     }//GEN-LAST:event_btnDeleteAllActionPerformed
 
-    private void txtTimeStartedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimeStartedActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_txtTimeStartedActionPerformed
-
     private void txtGhiChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGhiChuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtGhiChuActionPerformed
 
-    private void cbChonBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbChonBanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbChonBanActionPerformed
-
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-        // TODO add your handling code here:
-        BookingService bks = new BookingService();
-        CustomerService cus = new CustomerService();
-        cus.addCus(this.txtTenKH.getText(),this.txtSDT.getText() );
-        
-        
-        int idEmp = this.Emp.getIdEmploy();
-        String timeStart = this.txtTimeStarted.getText();
-        String timeEnd =this.txtTimeEnd.getText();
-        int seat = Integer.parseInt(this.txtSoKhach.getText());
-        String note = this.txtGhiChu.getText();
-        int IDcus =cus.getIdCus(this.txtSDT.getText());
-        int idTable =Integer.parseInt((String)cbChonBan.getSelectedItem());
-        
+// 1. Khóa nút để tránh spam click
+        btnConfirm.setEnabled(false);
+
         try {
-            if(bks.insertBooking(timeStart,timeEnd, seat, note,idEmp ,IDcus ,idTable)){
-                JOptionPane.showMessageDialog(null, "Thêm đơn đặt thành công , " + idTable, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            // --- VALIDATION (KIỂM TRA DỮ LIỆU ĐẦU VÀO) ---
+            if (txtTenKH.getText().trim().isEmpty()
+                    || txtSDT.getText().trim().isEmpty()
+                    || txtSoKhach.getText().trim().isEmpty()
+                    || txtChonBan.getText().trim().isEmpty()) {
+
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin (Tên, SĐT, Số khách, Bàn)!", "Thiếu thông tin", JOptionPane.WARNING_MESSAGE);
+                btnConfirm.setEnabled(true); // Mở lại nút
+                return; // Dừng lại không chạy tiếp
             }
-            if (quanLyBanListener != null) {
+
+            // Kiểm tra số khách có phải là số không
+            int seat = 0;
+            try {
+                seat = Integer.parseInt(this.txtSoKhach.getText().trim());
+                if (seat <= 0) {
+                    throw new NumberFormatException();
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Số lượng khách không hợp lệ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                btnConfirm.setEnabled(true);
+                return;
+            }
+
+            // --- XỬ LÝ KHÁCH HÀNG (LOGIC ROLLBACK) ---
+            BookingService bks = new BookingService();
+            CustomerService cus = new CustomerService();
+            String sdt = this.txtSDT.getText().trim();
+            String tenKH = this.txtTenKH.getText().trim();
+
+            // Kiểm tra xem khách hàng này đã tồn tại chưa
+            int existingCusId = cus.getIdCus(sdt);
+            boolean isNewCustomer = (existingCusId == 0); // Nếu ID = 0 tức là chưa có
+            int finalCusId = existingCusId;
+
+            if (isNewCustomer) {
+                // Nếu chưa có thì thêm mới
+                boolean addCusSuccess = cus.addCus(tenKH, sdt);
+                if (addCusSuccess) {
+                    finalCusId = cus.getIdCus(sdt); // Lấy ID mới vừa tạo
+                } else {
+                    JOptionPane.showMessageDialog(this, "Lỗi khi tạo thông tin khách hàng!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    btnConfirm.setEnabled(true);
+                    return;
+                }
+            }
+
+            // --- CHUẨN BỊ DỮ LIỆU ĐẶT BÀN ---
+            List<Integer> idTable = getListIdFromText(this.txtChonBan.getText());
+            int idEmp = this.Emp.getIdEmploy();
+
+            Date uStart = (Date) this.txtTimeStarted.getValue();
+            Date uEnd = (Date) this.txtTimeEnd.getValue();
+            java.sql.Timestamp timeStart = new java.sql.Timestamp(uStart.getTime()); // Dùng Timestamp như đã sửa ở DAO
+            java.sql.Timestamp timeEnd = new java.sql.Timestamp(uEnd.getTime());
+
+            String note = this.txtGhiChu.getText();
+
+            // --- GỌI SERVICE TẠO ĐƠN ---
+            if (bks.inserBooking(timeStart, timeEnd, seat, note, idEmp, finalCusId, idTable)) {
+                // ==> THÀNH CÔNG
+                JOptionPane.showMessageDialog(this, "Thêm đơn đặt thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+                // Update giao diện
+                if (quanLyBanListener != null) {
                     quanLyBanListener.onTableStatusUpdated();
                 }
-            if(danhSachListener!=null){
-                danhSachListener.onTableStatusUpdated();
+                if (danhSachListener != null) {
+                    danhSachListener.onTableStatusUpdated();
+                }
+                onTableStatusUpdated();
+
+            } else {
+                // ==> THẤT BẠI
+                JOptionPane.showMessageDialog(this, "Tạo đơn thất bại (Lỗi hệ thống hoặc trùng lịch)!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+
+                // *** LOGIC ROLLBACK ***
+                // Nếu ban nãy mình vừa tạo khách mới mà giờ tạo đơn lỗi, thì xóa khách đó đi
+                if (isNewCustomer) {
+                    // Bạn cần đảm bảo CustomerService có hàm deleteCus(int id) hoặc deleteCusByPhone(String sdt)
+                    // Ví dụ: cus.deleteCus(finalCusId); 
+                    cus.DeleteCus(finalCusId);
+                    System.out.println("Đã xóa khách hàng vừa tạo do lỗi đặt bàn.");
+                }
             }
-        } catch (SQLException ex) {
-            System.getLogger(pnScreenDatBanMoi.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-            JOptionPane.showMessageDialog(null, "Thêm đơn đặt thất bại ", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra: " + e.getMessage());
+        } finally {
+            btnConfirm.setEnabled(true);
+            btnConfirm.setFocusable(false);
+            btnConfirm.setFocusable(true);
         }
-        
-        onTableStatusUpdated();
-;
-        
-        
-        
     }//GEN-LAST:event_btnConfirmActionPerformed
 
-    private void txtTimeEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimeEndActionPerformed
+    private void tbTableListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTableListMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTimeEndActionPerformed
+        int row = this.tbTableList.getSelectedRow();
+        if (row == -1) {
+            return;
+        }
+
+        String idTable = "" + this.tbTableList.getValueAt(row, 0);
+        String currentText = this.txtChonBan.getText().trim(); // Lấy text hiện tại và cắt khoảng trắng thừa
+
+        // Kiểm tra xem bàn này đã có trong danh sách chưa
+        // (Dùng logic đơn giản: check chuỗi. Kỹ hơn thì nên split ra list rồi check)
+        boolean isExist = false;
+        String[] selectedIds = currentText.split(" ");
+        for (String id : selectedIds) {
+            if (id.equals(idTable)) {
+                isExist = true;
+                break;
+            }
+        }
+
+        if (!isExist) {
+            if (currentText.isEmpty()) {
+                this.txtChonBan.setText(idTable); // Nếu chưa có gì thì gán luôn
+            } else {
+                this.txtChonBan.setText(currentText + " " + idTable); // Nếu có rồi thì thêm dấu cách + ID
+            }
+        }
+    }//GEN-LAST:event_tbTableListMouseClicked
+
+    private void btnChonBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonBanActionPerformed
+        // TODO add your handling code here:
+        List<Integer> listIdTable = getListIdFromText(this.txtChonBan.getText());
+        if(listIdTable.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn ít nhất 1 bàn!");
+            return;
+        }
+    }//GEN-LAST:event_btnChonBanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChonBan;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JButton btnDeleteAll;
-    private javax.swing.JComboBox<String> cbChonBan;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -430,19 +567,20 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainTaoDon;
     private javax.swing.JPanel pnBanTrong;
     private javax.swing.JPanel pnThongTinKH;
     private javax.swing.JPanel screenDatBanMoi;
-    private javax.swing.JTable tableEmpty;
+    private javax.swing.JTable tbTableList;
     private javax.swing.JPanel titleTDDBM;
+    private javax.swing.JTextField txtChonBan;
     private javax.swing.JTextField txtGhiChu;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtSoKhach;
     private javax.swing.JTextField txtTenKH;
-    private javax.swing.JFormattedTextField txtTimeEnd;
-    private javax.swing.JFormattedTextField txtTimeStarted;
+    private javax.swing.JSpinner txtTimeEnd;
+    private javax.swing.JSpinner txtTimeStarted;
     // End of variables declaration//GEN-END:variables
 
     // Trong pnScreenDatBanMoi.java
@@ -450,7 +588,7 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
     public void onTableStatusUpdated() {
         resetForm();
         ViewTable();
-        loadTabletoComboBox();
+        
         
         // Hoặc làm mới toàn bộ JPanel chứa JTable
         this.pnBanTrong.revalidate();

@@ -224,10 +224,10 @@ public class JFLoginUI extends javax.swing.JFrame {
         if (xacthuc.checkLogin(user, pass)) {
             try {
                 JOptionPane.showMessageDialog(null, "Đăng nhập thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                Account now = xacthuc.getAccbyUser(user);
+                
                 //gọi Trang Manager
 
-                Main_menu menu = new Main_menu(now);
+                Main_menu menu = new Main_menu();
 
                 menu.show();
 

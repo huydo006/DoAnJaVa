@@ -9,13 +9,27 @@ package quanlydatban.Model;
  * @author HELLO
  */
 public class Account {
-    public boolean isActive = false;
+    public boolean isActive ;
     public String username;
     public String password;
+
+    public Account(boolean isActive, String username, String password) {
+        this.isActive = isActive;
+        this.username = username;
+        this.password = password;
+    }
 
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+    
+    public boolean isIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     public String getUsername() {
@@ -33,6 +47,6 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     
 }

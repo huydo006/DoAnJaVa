@@ -15,7 +15,7 @@ import quanlydatban.Model.Customer;
  * @author Admin
  */
 public class CustomerDao {
-    public void addCustomer(String name , String numberPhone){
+    public boolean addCustomer(String name , String numberPhone){
         
         String sql = "Insert into customer(nameCus , cusPhone) "
                 + " Values(? , ?)";
@@ -30,10 +30,11 @@ public class CustomerDao {
             conn.close();
             ptm.close();
             
-            
+            return true;
         } catch (SQLException ex) {
             System.getLogger(CustomerDao.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
+        return false;
     }
     
     public int getIdCus(String numberPhone){
@@ -82,5 +83,20 @@ public class CustomerDao {
         
         return temp;
     }
-   }
-
+    public void DeleteCus(int idCus){
+        String sql= "Delete from Customer "
+                + "Where IDcus = ?";
+        try {
+            Connection conn = ConnectionDatabase.getConnection();
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, idCus);
+            pstm.executeUpdate();
+            
+            pstm.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.getLogger(CustomerDao.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        
+    }
+}

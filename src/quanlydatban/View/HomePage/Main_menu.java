@@ -45,9 +45,9 @@ public class Main_menu extends javax.swing.JFrame {
      * Creates new form Main_menu
      */
     
-    public Main_menu(Account cur) throws SQLException {
+    public Main_menu() throws SQLException {
         
-        AccCurrent = cur;
+        setCurrentAcc();
         initComponents();
 //        if (this.AccCurrent != null) { 
 //            this.txtWelcome.setText(""+"Chào Mừng " + cur.getUsername()); 
@@ -56,7 +56,7 @@ public class Main_menu extends javax.swing.JFrame {
 //        this.txtWelcome.setText(this.txtWelcome.getString()+ "something");
         // 1. Khởi tạo đối tượng từ File Panel
         pnScreenQuanLyBanAn banAnPanel = new pnScreenQuanLyBanAn();
-        pnScreenDatBanMoi datBanPanel = new pnScreenDatBanMoi(this);
+        pnScreenDatBanMoi datBanPanel = new pnScreenDatBanMoi();
         pnScreenDanhSach danhSachPanel =new pnScreenDanhSach();
         
         banAnPanel.setDatBanMoiListener(datBanPanel);
@@ -64,18 +64,24 @@ public class Main_menu extends javax.swing.JFrame {
         datBanPanel.setDanhSachListener(danhSachPanel);
         
         
-        pnScreenDanhSachEmployee danhsachEm = new pnScreenDanhSachEmployee(); 
-        
-        
-        
         // 2. Thêm vào pnMain với một tên chuỗi CỐ ĐỊNH và DUY NHẤT
         // Cấu trúc: pnMain.add(đối tượng_Panel, "Tên_Card");
         pnMain.add(banAnPanel, "pnScreenQuanLyBanAn");
         pnMain.add(datBanPanel, "pnScreenDatBanMoi");
         pnMain.add(danhSachPanel, "pnScreenDanhSach");
-        pnMain.add(danhsachEm , "pnScreenDanhSachEmployee");       
+           
 //          ^ Đối tượng Panel      ^ Tên Card
         
+    }
+    private void setCurrentAcc(){
+       
+        for(Account x: AccList){
+           
+            if(x.isActive==true){
+                AccCurrent= x;
+                break;
+            }
+        }
         
     }
 
@@ -516,7 +522,7 @@ public class Main_menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
-
+    
     /**
      * @param args the command line arguments
      */

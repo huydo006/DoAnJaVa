@@ -41,7 +41,7 @@ public class pnScreenDanhSach extends javax.swing.JPanel implements TableUpdateL
             CustomerService cus = new CustomerService();
             Customer temp = cus.getCus(x.getIDcus());
             
-            model.addRow(new Object[] {x.getIdBooking() ,x.getIDtable() , temp.getNameCus() , temp.getCusPhone(), x.getTimeStart(),x.getGuestCount() ,x.getNote() });
+//            model.addRow(new Object[] {x.getIdBooking() ,x.getIDtable() , temp.getNameCus() , temp.getCusPhone(), x.getTimeStart(),x.getGuestCount() ,x.getNote() });
         }
         this.tbMain.revalidate();
         this.tbMain.repaint();

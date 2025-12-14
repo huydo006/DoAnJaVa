@@ -14,11 +14,17 @@ import quanlydatban.View.dangnhap.JFLoginUI;
  * @author HELLO
  */
 public class AccountService {
-    List<Account> list;
+    public List<Account> list;
     AccountDao accDao= new AccountDao();
     Account acc= null;
+
     public AccountService() {
+        this.list = accDao.getAllAcount();
+    }
+    
+    public List<Account> getAccountList() {
         this.list=accDao.getAllAcount();
+        return list;
     }
     public boolean checkLogin(String user , String pass){
         for(Account x: list){

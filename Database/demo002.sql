@@ -54,7 +54,8 @@ CREATE TABLE `Booking` (
   `TimeEnd` Time,
   `guestCount` INT DEFAULT 1,
   `Note` TEXT,
-  `IDtable`  INT NOT NULL ,
+  `isComplete` ENUM('ĐÃ XÁC NHẬN' , 'HOÀN THÀNH' , 'ĐÃ HỦY') NOT NULL default 'ĐÃ XÁC NHẬN',
+
   `IDemploy` INT NOT NULL,   -- nhân viên tạo booking (1..n)
   `IDcus` INT NOT NULL,      -- khách hàng (1..n)
   PRIMARY KEY (`IDbooking`),
@@ -67,8 +68,25 @@ CREATE TABLE `Booking` (
     ON DELETE RESTRICT
     ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+		
+create Table `List`(
+    `idList` int not null auto_increment,
+    `IDbooking` int not null,
+    `IDtable` int not null ,
+    
+    -- Khóa chính vẫn là idList, nhưng thêm khóa duy nhất tổng hợp
+    PRIMARY KEY(idList),
+    UNIQUE KEY `UQ_booking_table` (IDbooking, IDtable), -- RÀNG BUỘC DUY NHẤT TỔNG HỢP
 
-
+    CONSTRAINT `fk_list_booking` FOREIGN KEY(`IDbooking`)
+        REFERENCES`Booking`(`IDbooking`)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    CONSTRAINT `fk_list_table` FOREIGN KEY(`IDtable`)
+        REFERENCES`DiningTable` (`IDtable`)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 

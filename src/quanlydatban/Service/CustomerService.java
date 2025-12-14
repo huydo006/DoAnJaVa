@@ -14,8 +14,8 @@ import quanlydatban.Model.Customer;
 public class CustomerService {
     CustomerDao CusDao = new CustomerDao();
     Customer cus = null;
-    public void addCus(String name , String phone){
-        CusDao.addCustomer(name, phone);
+    public boolean addCus(String name , String phone){
+        return CusDao.addCustomer(name, phone);
     }
     public int getIdCus( String phone){
         return CusDao.getIdCus(phone);
@@ -23,5 +23,8 @@ public class CustomerService {
     public Customer getCus(int id){
         cus= CusDao.getCusById(id);
         return cus;
+    }
+    public void DeleteCus(int id){
+        CusDao.DeleteCus(id);
     }
 }

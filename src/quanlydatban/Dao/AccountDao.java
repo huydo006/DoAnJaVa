@@ -38,8 +38,9 @@ public class AccountDao {
             while(rs.next()){
                 String user= rs.getString("username");
                 String pass = rs.getString("password");
+                Boolean isActive = rs.getBoolean("isActive");
                 
-                listAcc.add(new Account(user , pass));
+                listAcc.add(new Account(isActive, user , pass ));
             }
             rs.close();
             stm.close();
