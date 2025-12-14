@@ -146,7 +146,7 @@ private void deleteSelectedBooking(int selectedRowIndex , int idTable) {
         pnTitle.setPreferredSize(new java.awt.Dimension(870, 70));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Danh Sach Dat Ban");
+        jLabel3.setText("Danh Sách Đặt Bàn");
 
         javax.swing.GroupLayout pnTitleLayout = new javax.swing.GroupLayout(pnTitle);
         pnTitle.setLayout(pnTitleLayout);
@@ -155,7 +155,7 @@ private void deleteSelectedBooking(int selectedRowIndex , int idTable) {
             .addGroup(pnTitleLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3)
-                .addContainerGap(678, Short.MAX_VALUE))
+                .addContainerGap(676, Short.MAX_VALUE))
         );
         pnTitleLayout.setVerticalGroup(
             pnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +210,7 @@ private void deleteSelectedBooking(int selectedRowIndex , int idTable) {
                 .addGap(12, 12, 12))
         );
 
-        jLabel7.setText("Thong ke dat ban : ");
+        jLabel7.setText("Thống kê đặt bàn:");
 
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel7.setPreferredSize(new java.awt.Dimension(349, 74));

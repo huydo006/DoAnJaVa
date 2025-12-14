@@ -49,6 +49,30 @@ public class Main_menu extends javax.swing.JFrame {
         
         AccCurrent = cur;
         initComponents();
+        String currentRole = acc.getEmployeeRoleByUsername(AccCurrent.getUsername());
+        
+        // 2. Kiểm tra và thiết lập visibility cho nút Danh sách nhân viên (jButton4)
+        if (currentRole != null && currentRole.equals("Manager")) {
+            // Nếu là Manager, nút sẽ được hiển thị (mặc định) và kích hoạt
+            jButton4.setVisible(true); // Đảm bảo nút này hiển thị
+            jButton4.setEnabled(true);
+            
+            // Cập nhật thông báo chào mừng
+            if (this.AccCurrent != null) {
+                this.txtWelcome.setText("Chào Mừng Quản Lý: " + AccCurrent.getUsername());
+            }
+
+        } else {
+            // Nếu là Employee hoặc không lấy được role, nút sẽ bị ẩn/vô hiệu hóa
+            // Giả định: Employee không được xem danh sách nhân viên khác
+            jButton4.setVisible(false); // Ẩn nút đi
+            jButton4.setEnabled(false); // Hoặc chỉ vô hiệu hóa
+            
+            // Cập nhật thông báo chào mừng
+            if (this.AccCurrent != null) {
+                this.txtWelcome.setText("Chào Mừng Nhân Viên: " + AccCurrent.getUsername());
+            }
+        }
 //        if (this.AccCurrent != null) { 
 //            this.txtWelcome.setText(""+"Chào Mừng " + cur.getUsername()); 
 //        }
@@ -363,28 +387,28 @@ public class Main_menu extends javax.swing.JFrame {
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.setPreferredSize(new java.awt.Dimension(150, 200));
 
-        jButton1.setText("Quan ly ban");
+        jButton1.setText("Quản lí bàn");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Dat ban moi");
+        jButton2.setText("Đặt bàn mới");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Xem danh sach ban");
+        jButton3.setText("Xem danh sách bàn");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Danh sach nhan vien");
+        jButton4.setText("Quản lí nhân viên");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -441,16 +465,16 @@ public class Main_menu extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(182, 182, 182)
-                .addComponent(txtWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(409, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addComponent(txtWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(43, 43, 43)
                 .addComponent(txtWelcome)
-                .addContainerGap(1023, Short.MAX_VALUE))
+                .addContainerGap(1025, Short.MAX_VALUE))
         );
 
         pnMain.add(jPanel7, "card2");
@@ -492,12 +516,6 @@ public class Main_menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCountUsing1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        CardLayout bt4 = (CardLayout) pnMain.getLayout();
-        bt4.show(pnMain, "pnScreenDanhSachEmployee");
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
         // 1. Kiểm tra nếu có tài khoản đang đăng nhập
@@ -516,6 +534,12 @@ public class Main_menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        CardLayout bt4 = (CardLayout) pnMain.getLayout();
+        bt4.show(pnMain, "pnScreenDanhSachEmployee");
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

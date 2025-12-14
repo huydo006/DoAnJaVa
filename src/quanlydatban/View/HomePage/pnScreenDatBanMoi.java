@@ -136,7 +136,7 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
         titleTDDBM.setPreferredSize(new java.awt.Dimension(870, 70));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setText("Tao Don Dat Ban Moi");
+        jLabel8.setText("Tạo Đơn Đặt Bàn Mới");
 
         javax.swing.GroupLayout titleTDDBMLayout = new javax.swing.GroupLayout(titleTDDBM);
         titleTDDBM.setLayout(titleTDDBMLayout);
@@ -163,26 +163,26 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
         pnThongTinKH.setPreferredSize(new java.awt.Dimension(870, 300));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setText("Thong tin khach hang");
+        jLabel9.setText("Thông tin khách hàng");
 
-        jLabel10.setText("Ten Khach Hang : *");
+        jLabel10.setText("Tên Khách Hàng : *");
 
-        jLabel12.setText("Chon Ban :");
+        jLabel12.setText("Chọn Bàn :");
 
-        jLabel13.setText("So dien thoai : ");
+        jLabel13.setText("Số Điện Thoại:");
 
-        jLabel14.setText("Gio hen : ");
+        jLabel14.setText("Giờ Hẹn:");
 
-        jLabel15.setText("So khach :");
+        jLabel15.setText("Số Khách:");
 
-        btnDeleteAll.setText("Xoa Form");
+        btnDeleteAll.setText("Xóa đơn");
         btnDeleteAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteAllActionPerformed(evt);
             }
         });
 
-        btnConfirm.setText("Tao Don");
+        btnConfirm.setText("Tạo Đơn");
         btnConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmActionPerformed(evt);
@@ -209,7 +209,7 @@ public class pnScreenDatBanMoi extends javax.swing.JPanel implements TableUpdate
             }
         });
 
-        jLabel17.setText("Gio ket thuc : ");
+        jLabel17.setText("Giờ Kết Thúc:");
 
         txtTimeEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

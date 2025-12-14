@@ -42,7 +42,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="697" max="32767" attributes="0"/>
+                  <EmptySpace pref="698" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -62,7 +62,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Quan Ly Ban An"/>
+            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xed; B&#xe0;n &#x102;n"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -139,10 +139,10 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" min="-2" pref="63" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel4" min="-2" pref="71" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
@@ -171,7 +171,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Ban Trong"/>
+                    <Property name="text" type="java.lang.String" value="B&#xe0;n Tr&#x1ed1;ng "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCountEmpty">
@@ -238,7 +238,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Da Dat"/>
+                    <Property name="text" type="java.lang.String" value="&#x110;&#xe3; &#x110;&#x1eb7;t "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCountBooked">
@@ -297,7 +297,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Dang Dung"/>
+                    <Property name="text" type="java.lang.String" value="&#x110;ang D&#xf9;ng"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCountUsing">
@@ -318,7 +318,7 @@
             </Container>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Thong ke ban an"/>
+                <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea; b&#x1ea3;n &#x103;n"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -126,7 +126,7 @@ public class pnScreenQuanLyBanAn extends JPanel implements  TableUpdateListener 
         titleQLB.setPreferredSize(new java.awt.Dimension(870, 70));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Quan Ly Ban An");
+        jLabel3.setText("Quản Lí Bàn Ăn");
 
         javax.swing.GroupLayout titleQLBLayout = new javax.swing.GroupLayout(titleQLB);
         titleQLB.setLayout(titleQLBLayout);
@@ -135,7 +135,7 @@ public class pnScreenQuanLyBanAn extends JPanel implements  TableUpdateListener 
             .addGroup(titleQLBLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3)
-                .addContainerGap(697, Short.MAX_VALUE))
+                .addContainerGap(698, Short.MAX_VALUE))
         );
         titleQLBLayout.setVerticalGroup(
             titleQLBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +154,7 @@ public class pnScreenQuanLyBanAn extends JPanel implements  TableUpdateListener 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Ban Trong");
+        jLabel4.setText("Bàn Trống ");
 
         txtCountEmpty.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtCountEmpty.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -170,11 +170,11 @@ public class pnScreenQuanLyBanAn extends JPanel implements  TableUpdateListener 
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addComponent(txtCountEmpty, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(94, Short.MAX_VALUE))
@@ -193,7 +193,7 @@ public class pnScreenQuanLyBanAn extends JPanel implements  TableUpdateListener 
         jPanel2.setPreferredSize(new java.awt.Dimension(233, 80));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Da Dat");
+        jLabel5.setText("Đã Đặt ");
 
         txtCountBooked.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtCountBooked.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -231,7 +231,7 @@ public class pnScreenQuanLyBanAn extends JPanel implements  TableUpdateListener 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Dang Dung");
+        jLabel6.setText("Đang Dùng");
 
         txtCountUsing.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtCountUsing.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -263,7 +263,7 @@ public class pnScreenQuanLyBanAn extends JPanel implements  TableUpdateListener 
                 .addGap(14, 14, 14))
         );
 
-        jLabel7.setText("Thong ke ban an");
+        jLabel7.setText("Thống kê bản ăn");
 
         javax.swing.GroupLayout thongkebananLayout = new javax.swing.GroupLayout(thongkebanan);
         thongkebanan.setLayout(thongkebananLayout);

@@ -97,7 +97,7 @@ public class cardTable extends javax.swing.JPanel {
         jPanel1.add(txtIdTable);
 
         txtSeats.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtSeats.setText("So cho : ");
+        txtSeats.setText("Số chỗ :");
         txtSeats.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 1, 5, 1));
         jPanel1.add(txtSeats);
 
@@ -112,12 +112,12 @@ public class cardTable extends javax.swing.JPanel {
 
         displayTrangthai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         displayTrangthai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        displayTrangthai.setText("Thay doi trang thai : ");
+        displayTrangthai.setText("Thay đổi trạng thái:");
         displayTrangthai.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 0, 0));
         jPanel2.add(displayTrangthai, new java.awt.GridBagConstraints());
 
         modeEmpty.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        modeEmpty.setText("Trong");
+        modeEmpty.setText("Trống");
         modeEmpty.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 10, 10));
         modeEmpty.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         modeEmpty.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -138,7 +138,7 @@ public class cardTable extends javax.swing.JPanel {
         jPanel2.add(modeEmpty, gridBagConstraints);
 
         modeBooked.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        modeBooked.setText("Da Dat");
+        modeBooked.setText("Đã Đặt");
         modeBooked.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 10, 10));
         modeBooked.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         modeBooked.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -159,7 +159,7 @@ public class cardTable extends javax.swing.JPanel {
         jPanel2.add(modeBooked, gridBagConstraints);
 
         modeUsing.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        modeUsing.setText("Dang Dung");
+        modeUsing.setText("Đang Dùng");
         modeUsing.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 10, 10));
         modeUsing.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         modeUsing.addMouseListener(new java.awt.event.MouseAdapter() {

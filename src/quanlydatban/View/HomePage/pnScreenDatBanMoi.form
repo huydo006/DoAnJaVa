@@ -95,7 +95,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Tao Don Dat Ban Moi"/>
+                <Property name="text" type="java.lang.String" value="T&#x1ea1;o &#x110;&#x1a1;n &#x110;&#x1eb7;t B&#xe0;n M&#x1edb;i"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -235,43 +235,43 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Thong tin khach hang"/>
+                    <Property name="text" type="java.lang.String" value="Th&#xf4;ng tin kh&#xe1;ch h&#xe0;ng"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Ten Khach Hang : *"/>
+                    <Property name="text" type="java.lang.String" value="T&#xea;n Kh&#xe1;ch H&#xe0;ng : *"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtTenKH">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Chon Ban :"/>
+                    <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n B&#xe0;n :"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="So dien thoai : "/>
+                    <Property name="text" type="java.lang.String" value="S&#x1ed1; &#x110;i&#x1ec7;n Tho&#x1ea1;i:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtSDT">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Gio hen : "/>
+                    <Property name="text" type="java.lang.String" value="Gi&#x1edd; H&#x1eb9;n:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel15">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="So khach :"/>
+                    <Property name="text" type="java.lang.String" value="S&#x1ed1; Kh&#xe1;ch:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtSoKhach">
                 </Component>
                 <Component class="javax.swing.JButton" name="btnDeleteAll">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Xoa Form"/>
+                    <Property name="text" type="java.lang.String" value="X&#xf3;a &#x111;&#x1a1;n"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteAllActionPerformed"/>
@@ -279,7 +279,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnConfirm">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Tao Don"/>
+                    <Property name="text" type="java.lang.String" value="T&#x1ea1;o &#x110;&#x1a1;n"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmActionPerformed"/>
@@ -310,7 +310,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel17">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Gio ket thuc : "/>
+                    <Property name="text" type="java.lang.String" value="Gi&#x1edd; K&#x1ebf;t Th&#xfa;c:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JFormattedTextField" name="txtTimeEnd">
