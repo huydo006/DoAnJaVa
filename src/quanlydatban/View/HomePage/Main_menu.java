@@ -32,6 +32,8 @@ import quanlydatban.View.dangnhap.JFLoginUI;
  * @author HELLO
  */
 public class Main_menu extends javax.swing.JFrame {
+    // Khai báo ở đầu lớp Main_menu, cùng nơi bạn khai báo các JButton
+    private javax.swing.JButton activeButton;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main_menu.class.getName());
     TableDao table = new TableDao();
@@ -106,19 +108,15 @@ public class Main_menu extends javax.swing.JFrame {
         sodobanan1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableListPanel1 = new javax.swing.JPanel();
-        pnTitle = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         pnMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        btnLogOut = new javax.swing.JButton();
+        jButton1 = new RoundedButton();
+        jButton2 = new RoundedButton();
+        jButton3 = new RoundedButton();
+        jButton4 = new RoundedButton();
+        btnLogOut = new RoundedButton();
         pnMain = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        txtWelcome = new javax.swing.JLabel();
 
         screenQuanLyBan1.setLayout(new java.awt.BorderLayout());
 
@@ -311,87 +309,66 @@ public class Main_menu extends javax.swing.JFrame {
         setTitle("Restaurant Managerment System");
         setMinimumSize(new java.awt.Dimension(1070, 600));
 
-        pnTitle.setBackground(new java.awt.Color(32, 39, 52));
-        pnTitle.setPreferredSize(new java.awt.Dimension(1070, 50));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Restaurant Managerment System ");
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel3.setText("X");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnTitleLayout = new javax.swing.GroupLayout(pnTitle);
-        pnTitle.setLayout(pnTitleLayout);
-        pnTitleLayout.setHorizontalGroup(
-            pnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnTitleLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 761, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
-        );
-        pnTitleLayout.setVerticalGroup(
-            pnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnTitleLayout.createSequentialGroup()
-                .addGroup(pnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnTitleLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel2))
-                    .addGroup(pnTitleLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(pnTitle, java.awt.BorderLayout.PAGE_START);
-
-        pnMenu.setBackground(new java.awt.Color(255, 255, 255));
+        pnMenu.setBackground(new java.awt.Color(26, 41, 59));
         pnMenu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnMenu.setPreferredSize(new java.awt.Dimension(200, 1100));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Quản lý đặt bàn ");
-        jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
         jLabel1.setPreferredSize(new java.awt.Dimension(150, 200));
 
-        jButton1.setText("Quan ly ban");
+        jButton1.setBackground(new java.awt.Color(26, 41, 59));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Quản lý bàn");
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Dat ban moi");
+        jButton2.setBackground(new java.awt.Color(26, 41, 59));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Đặt bàn mới");
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Xem danh sach ban");
+        jButton3.setBackground(new java.awt.Color(26, 41, 59));
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Xem danh sách bàn");
+        jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Danh sach nhan vien");
+        jButton4.setBackground(new java.awt.Color(26, 41, 59));
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Danh sách nhân viên");
+        jButton4.setBorder(null);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        btnLogOut.setText("Đăng Xuất");
+        btnLogOut.setBackground(new java.awt.Color(26, 41, 59));
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLogOut.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogOut.setText("Đăng xuất");
+        btnLogOut.setBorder(null);
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogOutActionPerformed(evt);
@@ -423,7 +400,7 @@ public class Main_menu extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 685, Short.MAX_VALUE))
+                .addGap(0, 735, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnMenu, java.awt.BorderLayout.LINE_START);
@@ -431,26 +408,15 @@ public class Main_menu extends javax.swing.JFrame {
         pnMain.setBackground(new java.awt.Color(255, 255, 255));
         pnMain.setLayout(new java.awt.CardLayout());
 
-        txtWelcome.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtWelcome.setText("Chào Mừng");
-        txtWelcome.setOpaque(true);
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(182, 182, 182)
-                .addComponent(txtWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(409, Short.MAX_VALUE))
+            .addGap(0, 870, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(txtWelcome)
-                .addContainerGap(1023, Short.MAX_VALUE))
+            .addGap(0, 1150, Short.MAX_VALUE)
         );
 
         pnMain.add(jPanel7, "card2");
@@ -463,6 +429,7 @@ public class Main_menu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        setActiveButton(jButton1);
         CardLayout bt1 = (CardLayout) pnMain.getLayout();
         bt1.show(pnMain,"pnScreenQuanLyBanAn");
         
@@ -470,12 +437,14 @@ public class Main_menu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        setActiveButton(jButton2);
         CardLayout bt2 = (CardLayout) pnMain.getLayout();
         bt2.show(pnMain ,"pnScreenDatBanMoi");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        setActiveButton(jButton3);
         CardLayout bt3 = (CardLayout) pnMain.getLayout();
         bt3.show(pnMain, "pnScreenDanhSach");
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -494,6 +463,7 @@ public class Main_menu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        setActiveButton(jButton4);
         CardLayout bt4 = (CardLayout) pnMain.getLayout();
         bt4.show(pnMain, "pnScreenDanhSachEmployee");
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -501,6 +471,7 @@ public class Main_menu extends javax.swing.JFrame {
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
         // 1. Kiểm tra nếu có tài khoản đang đăng nhập
+        setActiveButton(btnLogOut);
         if (this.AccCurrent != null) {
             // 2. Gọi hàm updateActive để set isActive = FALSE
             acc.updateActive(false, this.AccCurrent.getUsername());
@@ -512,11 +483,35 @@ public class Main_menu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLogOutActionPerformed
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
+    // ... (Sau tất cả các hàm ActionPerformed) ...
 
+private void setButtonDesign(javax.swing.JButton button, boolean isActive) {
+    if (isActive) {
+        // Màu Active: Màu xanh (điều chỉnh RGB theo ý muốn)
+        button.setBackground(new java.awt.Color(0, 101, 234)); 
+        button.setForeground(new java.awt.Color(255, 255, 255)); 
+    } else {
+        // Màu Inactive: Màu nền Menu (điều chỉnh RGB theo ý muốn)
+        button.setBackground(new java.awt.Color(26, 41, 59)); 
+        button.setForeground(new java.awt.Color(238, 238, 238));
+    }
+}
+
+// ... (Sau hàm setButtonDesign) ...
+
+public void setActiveButton(javax.swing.JButton currentButton) {
+    // 1. Đặt lại màu cho nút đang Active trước đó (Inactive)
+    if (activeButton != null) {
+        setButtonDesign(activeButton, false); 
+    }
+
+    // 2. Thiết lập trạng thái Active cho nút mới
+    setButtonDesign(currentButton, true); 
+
+    // 3. Lưu trữ nút mới làm nút Active
+    activeButton = currentButton;
+}
+    
     /**
      * @param args the command line arguments
      */
@@ -552,10 +547,8 @@ public class Main_menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -564,7 +557,6 @@ public class Main_menu extends javax.swing.JFrame {
     private javax.swing.JPanel main1;
     private javax.swing.JPanel pnMain;
     private javax.swing.JPanel pnMenu;
-    private javax.swing.JPanel pnTitle;
     private javax.swing.JPanel screenQuanLyBan1;
     private javax.swing.JPanel sodobanan1;
     private javax.swing.JPanel tableListPanel1;
@@ -573,6 +565,5 @@ public class Main_menu extends javax.swing.JFrame {
     private javax.swing.JTextField txtCountBooked1;
     private javax.swing.JTextField txtCountEmpty1;
     private javax.swing.JTextField txtCountUsing1;
-    private javax.swing.JLabel txtWelcome;
     // End of variables declaration//GEN-END:variables
 }
